@@ -17,10 +17,10 @@ CREATE TABLE IF NOT EXISTS ticket (
 ```
 este se ejecutara automaticamente al iniciar la aplicacion
 
-### Configurar conexion 
-    En el archivo bd/conexionBD.go estan las constantes para acceder a la BD
+### Configurar conexion
+En el archivo bd/conexionBD.go estan las constantes para acceder a la BD
     
-    ```shell
+```shell
 const (
 	host     = "localhost"
 	port     = 5432
