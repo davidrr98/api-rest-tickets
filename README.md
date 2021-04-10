@@ -6,7 +6,7 @@ API con un CRUD para origenes
 Se usa postgresql
 
 ### Script para crear la tabla
-
+```shell
 CREATE TABLE ticket (
    id serial primary key not null,
    usuario varchar(20) not null,
@@ -14,6 +14,7 @@ CREATE TABLE ticket (
    fecha_creacion timestamp not null,
    fecha_modificacion timestamp not null
 );
+```
 
 ### Configurar conexion 
     en el archivo bd/conexionBD.go estan las constantes para acceder a la BD
