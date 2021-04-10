@@ -7,7 +7,7 @@ Se usa postgresql
 
 ### Script para crear la tabla
 ```shell
-CREATE TABLE ticket (
+CREATE TABLE IF NOT EXISTS ticket (
    id serial primary key not null,
    usuario varchar(20) not null,
    estatus boolean not null,
@@ -15,9 +15,20 @@ CREATE TABLE ticket (
    fecha_modificacion timestamp not null
 );
 ```
+este se ejecutara automaticamente al iniciar la aplicacion
 
 ### Configurar conexion 
-    en el archivo bd/conexionBD.go estan las constantes para acceder a la BD
+    En el archivo bd/conexionBD.go estan las constantes para acceder a la BD
+    
+    ```shell
+const (
+	host     = "localhost"
+	port     = 5432
+	user     = "postgres"
+	password = "123"
+	dbname   = "prueba_tecnica"
+)
+```
 
 
 
@@ -31,16 +42,19 @@ CREATE TABLE ticket (
 * http://localhost:8080/ticket  :POST guardar ticket 
 
 recibe un JSON
+```shell
 {
     "usuario": "usuario",
     "fecha_creacion": "",
     "fecha_modificacion": "",
     "estatus": true
 }
+```
 
 * http://localhost:8080/ticket  :PUT Edita un ticket 
 
 recibe un JSON
+```shell
 {
     "id": 4,
     "usuario": "usuario",
@@ -48,5 +62,5 @@ recibe un JSON
     "fecha_modificacion": "",
     "estatus": true
 }
- 
+````
  * http://localhost:8080/ticket/id :DELETE Elimina ticket con alguna id
