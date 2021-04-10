@@ -4,9 +4,27 @@ import (
 	"context"
 	"strconv"
 	"time"
+	"io/ioutil"
 
 	"github.com/davidrr98/api-rest-tickets/models"
 )
+
+func CreateTabla() error {
+	//path := filepath.Join("modelo.sql")
+
+	c, ioErr := ioutil.ReadFile("modelo.sql")
+	if ioErr != nil {
+		return ioErr
+	}
+	sql := string(c)
+
+	db := DBConect
+	_, err := db.Exec(sql)
+	if err != nil {
+		return err
+	}
+	return nil
+}
 
 func InsertoTicket(u models.Ticket) (string, error) {
 	sqlStatement := `INSERT INTO public.ticket(

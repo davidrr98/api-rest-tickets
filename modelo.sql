@@ -1,4 +1,4 @@
-CREATE TABLE ticket (
+CREATE TABLE IF NOT EXISTS ticket (
    id serial primary key not null,
    usuario varchar(20) not null,
    estatus boolean not null,
