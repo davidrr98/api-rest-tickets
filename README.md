@@ -2,14 +2,34 @@
 API con un CRUD para origenes
 
 
+## Base de datos
+Se usa postgresql
 
-Rutas de acceso 
+### Script para crear la tabla
+```shell
+CREATE TABLE ticket (
+   id serial primary key not null,
+   usuario varchar(20) not null,
+   estatus boolean not null,
+   fecha_creacion timestamp not null,
+   fecha_modificacion timestamp not null
+);
+```
 
-http://localhost:8080/ticket :GET obtener todos los tickets
-http://localhost:8080/ticket?usuario=usuario&estatus=false&id=0&limit=-1  parametros del Query
+### Configurar conexion 
+    en el archivo bd/conexionBD.go estan las constantes para acceder a la BD
 
-http://localhost:8080/ticket/id :GET obtener ticket con alguna id
-http://localhost:8080/ticket  :POST guardar ticket 
+
+
+## Rutas de acceso
+* http://localhost:8080/ticket :GET obtener todos los tickets
+
+* http://localhost:8080/ticket?usuario=usuario&estatus=false&id=0&limit=-1  parametros del Query
+
+* http://localhost:8080/ticket/id :GET obtener ticket con alguna id
+
+* http://localhost:8080/ticket  :POST guardar ticket 
+
 recibe un JSON
 {
     "usuario": "usuario",
@@ -18,7 +38,8 @@ recibe un JSON
     "estatus": true
 }
 
-http://localhost:8080/ticket  :PUT Edita un ticket 
+* http://localhost:8080/ticket  :PUT Edita un ticket 
+
 recibe un JSON
 {
     "id": 4,
@@ -28,4 +49,4 @@ recibe un JSON
     "estatus": true
 }
  
- http://localhost:8080/ticket/id :DELETE Elimina ticket con alguna id
+ * http://localhost:8080/ticket/id :DELETE Elimina ticket con alguna id
