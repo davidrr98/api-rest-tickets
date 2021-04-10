@@ -33,6 +33,10 @@ const (
 
 
 ## Rutas de acceso
+
+Anexo archivo para importar en postman
+
+
 * http://localhost:8080/ticket :GET obtener todos los tickets
 
 * http://localhost:8080/ticket?usuario=usuario&estatus=false&id=0&limit=-1  parametros del Query
