@@ -6,10 +6,13 @@ API con un CRUD para origenes
 Rutas de acceso 
 
 http://localhost:8080/ticket :GET obtener todos los tickets
+
 http://localhost:8080/ticket?usuario=usuario&estatus=false&id=0&limit=-1  parametros del Query
 
 http://localhost:8080/ticket/id :GET obtener ticket con alguna id
+
 http://localhost:8080/ticket  :POST guardar ticket 
+
 recibe un JSON
 {
     "usuario": "usuario",
@@ -19,6 +22,7 @@ recibe un JSON
 }
 
 http://localhost:8080/ticket  :PUT Edita un ticket 
+
 recibe un JSON
 {
     "id": 4,
