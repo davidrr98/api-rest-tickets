@@ -1,9 +1,16 @@
 package main
 
 import (
-	"fmt"
+	"log"
+
+	"github.com/davidrr98/api-rest-tickets/bd"
 )
 
 func main() {
-	fmt.Println("Hello")
+	if !bd.ProbarConexion() {
+		log.Fatal("Sin conexion a la BD")
+		return
+	}
+	log.Output("Listo para trabajar")
+	//	handlers.Manejadores()
 }
