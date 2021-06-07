@@ -10,8 +10,8 @@ import (
 func ConsultarTickets(codiciones string) ([]models.Ticket, error) {
 	q := `
 	SELECT id, usuario, estatus, fecha_creacion, fecha_modificacion
-	FROM public.ticket `+codiciones
-	
+	FROM public.ticket ` + codiciones
+
 	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
 	defer cancel()
 
@@ -33,6 +33,40 @@ func ConsultarTickets(codiciones string) ([]models.Ticket, error) {
 	}
 
 	return tickets, nil
+
+}
+
+func ConsultarRegistroApoyo(codiciones string) ([]models.RegistroApoyo, error) {
+	q := `
+	SELECT id, tercero_id, solicitud_id, espacio_fisico_id, periodo_id, activo, usuario_administrador, fecha_creacion, fecha_modificacion
+	FROM public.registro_apoyo ` + codiciones
+
+	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
+	defer cancel()
+
+	rows, err := DBConect.QueryContext(ctx, q)
+	if err != nil {
+		return nil, err
+	}
+
+	defer rows.Close()
+
+	var registros []models.RegistroApoyo
+	for rows.Next() {
+		var t models.RegistroApoyo
+		rows.Scan(&t.ID, &t.TerceroId, &t.SolicitudId,
+			&t.EspacioFisicoId,
+			&t.PeriodoId,
+			&t.Activo,
+			&t.UsuarioAdministrador,
+			&t.FechaCreacion,
+			&t.FechaModificacion)
+		/* p.FechaInicio = p.FechaInicio[:10]
+		p.FechaFin = p.FechaFin[:10] */
+		registros = append(registros, t)
+	}
+
+	return registros, nil
 
 }
 
